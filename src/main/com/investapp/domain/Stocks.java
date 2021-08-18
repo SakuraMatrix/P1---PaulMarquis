@@ -1,5 +1,8 @@
 package domain;
 
+
+
+
 public class Stocks {
     private String ticker; 
     private double price;  

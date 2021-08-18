@@ -1,9 +1,12 @@
 package service; 
-import repository.StockRepository; 
+import repository.StockRepository;
+
+import org.springframework.stereotype.Service;
+
 import domain.Stocks;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
+@Service
 public class StockService { 
     private StockRepository stockRepository;
 

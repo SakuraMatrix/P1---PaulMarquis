@@ -1,15 +1,14 @@
 package repository;
 import com.datastax.oss.driver.api.core.CqlSession;
 
+import org.springframework.stereotype.Repository;
+
 import domain.Stocks;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Mono;  
+@Repository
 public class StockRepository {
     private CqlSession session; 
-
-    public StockRepository() {
-        
-    } 
 
     public StockRepository(CqlSession session) {
         this.session = session;
