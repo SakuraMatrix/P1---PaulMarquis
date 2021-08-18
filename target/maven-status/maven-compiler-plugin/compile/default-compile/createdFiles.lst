@@ -1,0 +1,4 @@
+repository\StockRepository.class
+service\StockService.class
+App.class
+domain\Stocks.class
