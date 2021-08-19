@@ -1,5 +1,6 @@
 AppConfig.class
-repository\StockRepository.class
-service\StockService.class
 App.class
+repository\StockRepository.class
+service\HttpHandler.class
+service\StockService.class
 domain\Stocks.class

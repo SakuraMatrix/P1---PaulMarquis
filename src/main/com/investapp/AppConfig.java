@@ -1,7 +1,12 @@
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import com.datastax.oss.driver.api.core.CqlSession;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
@@ -40,12 +45,26 @@ public class AppConfig {
                     response.send(service.getAll().map(App::toByteBuf)
                             .log("http-server")))
                 .get("/stocks/{param}", (request, response) ->
-                 response.send(service.get(request.param("param")).map(App::toByteBuf)
+                        response.send(service.get(request.param("param")).map(App::toByteBuf)
+                            .log("http-server"))) 
+                .get("/stocks/delete/{param}", (request, response) ->
+                        response.send(service.deleteStock(request.param("param")).map(App::toByteBuf)
                             .log("http-server")))
                 .get("/test", (request, response) ->
                         response.status(404).addHeader("Message", "Test HTML Page")
-                                .sendFile(testHTML))
-                )
+                            .sendFile(testHTML)) 
+                .get("/stocks/add/{param}", (request, response) ->
+                        {
+                            try {
+                                return response.send(service.addStock(request.param("param")).map(App::toByteBuf)
+                                    .log("http-server"));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            return response;
+                        })
+                ) 
+                
         .bindNow(); 
         
     } 
