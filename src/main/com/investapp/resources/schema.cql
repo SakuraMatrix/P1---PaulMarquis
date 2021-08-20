@@ -30,4 +30,4 @@ timestamp double
 -- Insert some data
 INSERT INTO exchange.stock
 (symbol, price)
-VALUES ('TEST', 69 );
+VALUES ('TEST', 70 );

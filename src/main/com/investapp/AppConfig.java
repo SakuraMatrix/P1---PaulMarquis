@@ -42,10 +42,10 @@ public class AppConfig {
         .port(8080)
         .route(routes ->
             routes.get("/stocks", (request, response) ->
-                    response.send(service.getAll().map(App::toByteBuf)
+                    response.status(200).send(service.getAll().map(App::toByteBuf)
                             .log("http-server")))
                 .get("/stocks/{param}", (request, response) ->
-                        response.send(service.get(request.param("param")).map(App::toByteBuf)
+                        response.status(200).send(service.get(request.param("param")).map(App::toByteBuf)
                             .log("http-server"))) 
                 .get("/stocks/delete/{param}", (request, response) ->
                         response.send(service.deleteStock(request.param("param")).map(App::toByteBuf)

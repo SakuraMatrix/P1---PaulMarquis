@@ -1,4 +1,5 @@
 AppConfig.class
+domain\StockHolder.class
 App.class
 repository\StockRepository.class
 service\HttpHandler.class

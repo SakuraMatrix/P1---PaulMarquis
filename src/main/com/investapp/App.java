@@ -14,7 +14,8 @@ public class App {
     public static void main(String[] args) throws URISyntaxException {
              
         AnnotationConfigApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class); 
-        appContext.getBean(DisposableServer.class).onDispose().block();
+        appContext.getBean(DisposableServer.class).onDispose().block(); 
+        appContext.close();
     } 
     
     
